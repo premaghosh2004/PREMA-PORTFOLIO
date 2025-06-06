@@ -1,10 +1,9 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {FiGithub} from 'react-icons/fi';
+import { FiGithub } from 'react-icons/fi';
 import projects from '../data/projects';
 
 const Projects: React.FC = () => {
-  // No filtering, show all projects directly
   const filteredProjects = projects;
 
   const containerVariants = {
@@ -24,9 +23,9 @@ const Projects: React.FC = () => {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { 
+      transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: 'easeOut',
       },
     },
     exit: {
@@ -39,29 +38,15 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projects" className="section relative overflow-hidden">
-      {/* Animated background elements */}
+      {/* Background elements */}
       <motion.div
-        animate={{
-          rotate: 360,
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+        animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
         className="absolute top-10 right-10 w-40 h-40 border-2 border-dashed border-primary-200 dark:border-primary-800 rounded-full opacity-30"
       />
       <motion.div
-        animate={{
-          rotate: -360,
-          scale: [1, 0.8, 1],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+        animate={{ rotate: -360, scale: [1, 0.8, 1] }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
         className="absolute bottom-10 left-10 w-32 h-32 border-2 border-dashed border-secondary-200 dark:border-secondary-800 rounded-full opacity-30"
       />
 
@@ -70,25 +55,17 @@ const Projects: React.FC = () => {
           initial={{ opacity: 0, y: -30, scale: 0.8 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
           className="section-title mb-16"
         >
           <motion.span
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "linear",
-            }}
+            animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
             className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent bg-300%"
           >
             My Projects
           </motion.span>
         </motion.h2>
-
-        {/* Removed the filter buttons */}
 
         <motion.div
           variants={containerVariants}
@@ -103,14 +80,9 @@ const Projects: React.FC = () => {
                 key={project.id}
                 variants={itemVariants}
                 layout
-                whileHover={{
-                  y: -10,
-                  rotateY: 5,
-                  scale: 1.02,
-                }}
+                whileHover={{ y: -10, rotateY: 5, scale: 1.02 }}
                 className="card group relative overflow-hidden"
               >
-                {/* Animated background gradient */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-secondary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.3 }}
@@ -125,21 +97,17 @@ const Projects: React.FC = () => {
                     className="w-full h-full object-cover"
                   />
 
-                  {/* Overlay with animated buttons */}
+                  {/* 🔧 FIXED OVERLAY (Always visible on mobile, hover on desktop) */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-900/50 to-dark-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4"
+                    className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-900/50 to-dark-900/80 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4"
                     initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
+                    animate={{ opacity: 1 }}
                   >
-                    
                     <motion.a
                       href={project.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{
-                        scale: 1.1,
-                        rotate: -5,
-                      }}
+                      whileHover={{ scale: 1.1, rotate: -5 }}
                       whileTap={{ scale: 0.9 }}
                       className="p-3 bg-white/90 backdrop-blur-sm rounded-full text-dark-800 hover:bg-primary-50 hover:text-primary-600 transition-colors duration-300"
                       aria-label="View Source Code"
@@ -148,13 +116,9 @@ const Projects: React.FC = () => {
                     </motion.a>
                   </motion.div>
 
-                  {/* Floating particles */}
                   <motion.div
                     className="absolute top-4 right-4 w-2 h-2 bg-primary-400 rounded-full opacity-0 group-hover:opacity-100"
-                    animate={{
-                      y: [0, -10, 0],
-                      opacity: [0, 1, 0],
-                    }}
+                    animate={{ y: [0, -10, 0], opacity: [0, 1, 0] }}
                     transition={{
                       duration: 2,
                       repeat: Infinity,
@@ -185,10 +149,7 @@ const Projects: React.FC = () => {
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: tagIndex * 0.1 }}
-                        whileHover={{
-                          scale: 1.1,
-                          y: -2,
-                        }}
+                        whileHover={{ scale: 1.1, y: -2 }}
                         className="px-2 py-1 text-xs font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-md"
                       >
                         {tag}
