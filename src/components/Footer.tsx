@@ -230,11 +230,8 @@ const Footer: React.FC = () => {
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <FiIcons.FiPhone className="text-primary-400 mt-1 mr-3" />
                 </motion.div>
-                <a href="tel:+11234567890" className="text-dark-300 hover:text-primary-400 transition-colors duration-300">
-                  +91 9046591533
-                </a>
+              
               </motion.li>
             </motion.ul>
           </motion.div>
@@ -257,7 +254,7 @@ const Footer: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             className="text-dark-400 text-center md:text-right"
           >
-            Designed & Built with{' '}
+            Made by{' '}
             <motion.span
               animate={{
                 scale: [1, 1.2, 1],
@@ -269,9 +266,8 @@ const Footer: React.FC = () => {
               }}
               className="text-error-500"
             >
-              ❤
             </motion.span>{' '}
-            by Prema Ghosh
+            Prema Ghosh
           </motion.p>
         </motion.div>
       </div>

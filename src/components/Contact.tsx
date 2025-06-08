@@ -1,13 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FiSend, FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
+import { FiSend, FiMail, FiMapPin } from 'react-icons/fi';
 import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: '',
   });
 
@@ -33,10 +32,6 @@ const Contact: React.FC = () => {
       newErrors.email = 'Email is invalid';
     }
     
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
-    }
-    
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     }
@@ -49,7 +44,6 @@ const Contact: React.FC = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => {
         const newErrors = { ...prev };
@@ -68,8 +62,6 @@ const Contact: React.FC = () => {
     setSubmitResult(null);
     
     try {
-      // Replace these with your actual EmailJS service, template, and user IDs
-      // when you have them set up
       await emailjs.sendForm(
         'service_05wfp7s',
         'template_dxd0ali',
@@ -82,11 +74,9 @@ const Contact: React.FC = () => {
         message: 'Your message has been sent successfully!',
       });
       
-      // Reset form
       setFormData({
         name: '',
         email: '',
-        subject: '',
         message: '',
       });
     } catch (error) {
@@ -122,33 +112,16 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="section relative overflow-hidden">
-      {/* Animated background elements */}
       <motion.div
-        animate={{
-          rotate: 360,
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+        animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         className="absolute top-10 left-10 w-32 h-32 border border-primary-200 dark:border-primary-800 rounded-full opacity-20"
       />
       <motion.div
-        animate={{
-          rotate: -360,
-          x: [0, 20, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+        animate={{ rotate: -360, x: [0, 20, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="absolute bottom-10 right-10 w-24 h-24 border border-secondary-200 dark:border-secondary-800 rounded-lg opacity-20"
       />
-
-      {/* Floating particles */}
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
@@ -182,11 +155,7 @@ const Contact: React.FC = () => {
             animate={{
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
             }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear",
-            }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent bg-300%"
           >
             Contact Me
@@ -201,21 +170,15 @@ const Contact: React.FC = () => {
           className="grid grid-cols-1 lg:grid-cols-2 gap-12"
         >
           <motion.div variants={itemVariants}>
-            <motion.h3
-              whileHover={{ scale: 1.05, x: 10 }}
-              className="text-2xl font-semibold mb-6"
-            >
+            <motion.h3 whileHover={{ scale: 1.05, x: 10 }} className="text-2xl font-semibold mb-6">
               Get In Touch
             </motion.h3>
-<motion.p
-  variants={itemVariants}
-  className="text-dark-600 dark:text-dark-300 mb-8"
->
-  Have a project idea or looking to collaborate on something impactful? Let's connect!  
-  I'm always excited to explore new opportunities — whether it's full-stack development, AI innovation, or IoT solutions.  
-  Feel free to reach out for collaborations, creative brainstorming, or just a good tech conversation.
-</motion.p>
-
+            <motion.p variants={itemVariants} className="text-dark-600 dark:text-dark-300 mb-8">
+              Have a project idea or looking to collaborate on something impactful? Let's connect!
+              I'm always excited to explore new opportunities — whether it's full-stack development,
+              AI innovation, or IoT solutions. Feel free to reach out for collaborations, creative
+              brainstorming, or just a good tech conversation.
+            </motion.p>
 
             <motion.div variants={containerVariants} className="space-y-6">
               <motion.div
@@ -235,28 +198,6 @@ const Contact: React.FC = () => {
                   <p className="text-dark-600 dark:text-dark-400">
                     <a href="mailto:john.doe@example.com" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
                       premaghosh31@gmail.com
-                    </a>
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                whileHover={{ x: 10, scale: 1.02 }}
-                className="flex items-start group"
-              >
-                <motion.div
-                  whileHover={{ rotate: 360, scale: 1.2 }}
-                  transition={{ duration: 0.5 }}
-                  className="p-3 bg-secondary-100 dark:bg-secondary-900/30 rounded-lg mr-4 group-hover:bg-secondary-200 dark:group-hover:bg-secondary-900/50 transition-colors"
-                >
-                  <FiPhone className="text-secondary-600 dark:text-secondary-400 text-xl" />
-                </motion.div>
-                <div>
-                  <h4 className="font-medium mb-1">Phone</h4>
-                  <p className="text-dark-600 dark:text-dark-400">
-                    <a href="tel:+11234567890" className="hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors">
-                      +91 9046591533
                     </a>
                   </p>
                 </div>
@@ -306,18 +247,11 @@ const Contact: React.FC = () => {
                 </motion.div>
               )}
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileFocus={{ scale: 1.02 }}
-              >
+              <motion.div>
                 <label htmlFor="name" className="block text-dark-700 dark:text-dark-300 mb-2">
                   Your Name
                 </label>
                 <motion.input
-                  whileFocus={{
-                    boxShadow: "0 0 0 3px rgba(99, 102, 241, 0.1)",
-                    borderColor: "rgb(99, 102, 241)",
-                  }}
                   type="text"
                   id="name"
                   name="name"
@@ -331,28 +265,17 @@ const Contact: React.FC = () => {
                   placeholder="Enter your full name here"
                 />
                 {errors.name && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-1 text-error-600 dark:text-error-400 text-sm"
-                  >
+                  <motion.p className="mt-1 text-error-600 dark:text-error-400 text-sm">
                     {errors.name}
                   </motion.p>
                 )}
               </motion.div>
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileFocus={{ scale: 1.02 }}
-              >
+              <motion.div>
                 <label htmlFor="email" className="block text-dark-700 dark:text-dark-300 mb-2">
                   Your Email
                 </label>
                 <motion.input
-                  whileFocus={{
-                    boxShadow: "0 0 0 3px rgba(99, 102, 241, 0.1)",
-                    borderColor: "rgb(99, 102, 241)",
-                  }}
                   type="email"
                   id="email"
                   name="email"
@@ -366,63 +289,17 @@ const Contact: React.FC = () => {
                   placeholder="Enter your mail ID"
                 />
                 {errors.email && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-1 text-error-600 dark:text-error-400 text-sm"
-                  >
+                  <motion.p className="mt-1 text-error-600 dark:text-error-400 text-sm">
                     {errors.email}
                   </motion.p>
                 )}
               </motion.div>
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileFocus={{ scale: 1.02 }}
-              >
-                <label htmlFor="subject" className="block text-dark-700 dark:text-dark-300 mb-2">
-                  Subject
-                </label>
-                <motion.input
-                  whileFocus={{
-                    boxShadow: "0 0 0 3px rgba(99, 102, 241, 0.1)",
-                    borderColor: "rgb(99, 102, 241)",
-                  }}
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-lg border transition-all duration-300 ${
-                    errors.subject
-                      ? 'border-error-500 dark:border-error-400'
-                      : 'border-dark-200 dark:border-dark-700'
-                  } bg-white dark:bg-dark-800 focus:outline-none`}
-                  placeholder="Project Inquiry"
-                />
-                {errors.subject && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-1 text-error-600 dark:text-error-400 text-sm"
-                  >
-                    {errors.subject}
-                  </motion.p>
-                )}
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileFocus={{ scale: 1.02 }}
-              >
+              <motion.div>
                 <label htmlFor="message" className="block text-dark-700 dark:text-dark-300 mb-2">
                   Your Message
                 </label>
                 <motion.textarea
-                  whileFocus={{
-                    boxShadow: "0 0 0 3px rgba(99, 102, 241, 0.1)",
-                    borderColor: "rgb(99, 102, 241)",
-                  }}
                   id="message"
                   name="message"
                   value={formData.message}
@@ -436,22 +313,13 @@ const Contact: React.FC = () => {
                   placeholder="Hello, I'd like to talk about..."
                 ></motion.textarea>
                 {errors.message && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-1 text-error-600 dark:text-error-400 text-sm"
-                  >
+                  <motion.p className="mt-1 text-error-600 dark:text-error-400 text-sm">
                     {errors.message}
                   </motion.p>
                 )}
               </motion.div>
 
               <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 10px 25px rgba(99, 102, 241, 0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
                 type="submit"
                 disabled={isSubmitting}
                 className="btn btn-primary w-full flex items-center justify-center gap-2 relative overflow-hidden"
