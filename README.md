@@ -56,8 +56,8 @@ npm run build
 
 🤝 Connect With Me
 
-* [LinkedIn](https://linkedin.com/in/your-profile)
-* [GitHub](https://github.com/your-username)
-* [Email](mailto:your.email@example.com)
+* [LinkedIn](https://www.linkedin.com/in/premaghosh31/)
+* [GitHub](https://github.com/premaghosh2004)
+* [Email](mailto:premaghosh31@gmail.com)
 
 ---
