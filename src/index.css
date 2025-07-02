@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== Base Styles ===== */
 @layer base {
   body {
     @apply font-sans text-dark-800 dark:text-dark-100 bg-dark-50 dark:bg-dark-950 transition-colors duration-300;
@@ -18,6 +19,7 @@
   }
 }
 
+/* ===== Component Styles ===== */
 @layer components {
   .section {
     @apply py-20 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto;
@@ -29,7 +31,8 @@
 
   .section-title::after {
     content: '';
-    @apply absolute left-1/2 -translate-x-1/2 bottom-0 w-20 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 rounded-full;
+    @apply absolute left-1/2 -translate-x-1/2 bottom-0 w-20 h-1 rounded-full;
+    background-image: linear-gradient(to right, theme('colors.primary.500'), theme('colors.secondary.500'), theme('colors.accent.500'));
     animation: shimmer 2s ease-in-out infinite;
   }
 
@@ -58,15 +61,19 @@
     @apply bg-white dark:bg-dark-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl border border-dark-100 dark:border-dark-700;
   }
 
-  .bg-300% {
+  .bg-size-300 {
     background-size: 300% 300%;
   }
 }
 
+/* ===== Global Styles ===== */
+
+/* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
 }
 
+/* Progress bar styles */
 .progress-bar {
   @apply h-2 bg-dark-200 dark:bg-dark-700 rounded-full overflow-hidden relative;
 }
@@ -92,17 +99,17 @@ html {
   @apply bg-primary-500 dark:bg-primary-500;
 }
 
-/* Smooth transitions for theme switching */
+/* Theme transition effects */
 * {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Loading animation for images */
+/* Image loading animation */
 img {
   @apply transition-all duration-300;
 }
 
-/* Focus styles for accessibility */
+/* Focus ring styles for accessibility */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
@@ -110,7 +117,7 @@ textarea:focus-visible {
   @apply outline-2 outline-primary-500 outline-offset-2;
 }
 
-/* Gradient animation */
+/* Gradient background animation */
 @keyframes gradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -119,4 +126,5 @@ textarea:focus-visible {
 
 .animate-gradient {
   animation: gradient 3s ease infinite;
+  background-size: 300% 300%;
 }
